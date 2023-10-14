@@ -68,9 +68,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
     const data = {
       subject: "Contact Form Submission",
-      email: email,
+      name,
+      email,
+      message,
       x_to: "anasnaseem420@gmail.com",
-      message: `Name: ${name}\nEmail: ${email}\nMessage: ${message}`,
     };
 
     // Send POST request to the API
@@ -81,15 +82,8 @@ document.addEventListener("DOMContentLoaded", function () {
       },
       body: JSON.stringify(data),
     })
-      .then((response) => {
-        try {
-          return response.json();
-        } catch (error) {
-          return {};
-        }
-      })
       .then((data) => {
-        if (data.success) {
+        if (data.status == 200) {
           alert("Message sent successfully!");
           contactForm.reset();
         } else {
